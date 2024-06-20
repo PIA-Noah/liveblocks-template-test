@@ -1,10 +1,18 @@
 import { useMemo } from "react";
 import { useOthers, useSelf } from "../../liveblocks.config";
+import { useSelf as useSelfSheet, useOthers as useOthersSheet } from "@/liveblocks_sheet.config";
 import { AvatarStack } from "../../primitives/AvatarStack";
+import { useInitialDocument } from "@/lib/hooks/useInitialDocument";
+
 
 export function DocumentHeaderAvatars() {
-  const self = useSelf();
-  const others = useOthers();
+  const initialDocument = useInitialDocument();
+  const self = initialDocument.type === 'spreadsheet'
+  ? useSelfSheet()
+  : useSelf();
+  const others = initialDocument.type === 'spreadsheet'
+  ? useOthersSheet()
+  : useOthers();
   const users = useMemo(
     () => (self ? [self, ...others] : others),
     [self, others]

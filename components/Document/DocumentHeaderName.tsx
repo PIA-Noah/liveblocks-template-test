@@ -9,6 +9,7 @@ import {
 import { EditIcon } from "@/icons";
 import { useInitialDocument } from "@/lib/hooks/useInitialDocument";
 import { useSelf } from "@/liveblocks.config";
+import { useSelf as useSelfSheet} from "@/liveblocks_sheet.config";
 import { Tooltip } from "@/primitives/Tooltip";
 import styles from "./DocumentHeaderName.module.css";
 
@@ -22,7 +23,9 @@ export function DocumentHeaderName({
   ...props
 }: Props) {
   const initialDocument = useInitialDocument();
-  const isReadOnly = useSelf((me) => !me.canWrite);
+  const isReadOnly = initialDocument.type === 'spreadsheet'
+  ? useSelfSheet((me) => !me.canWrite)
+  : useSelf((me) => !me.canWrite);
   const [draftName, setDraftName] = useState(initialDocument.name);
   const [isRenaming, setRenaming] = useState(false);
 

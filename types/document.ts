@@ -31,7 +31,7 @@ export type Document = {
   type: DocumentType;
 };
 
-export type DocumentType = "text" | "whiteboard" | "spreadsheet";
+export type DocumentType = "text" | "whiteboard" | "spreadsheet" | "counter";
 
 export type DocumentGroup = Group & {
   access: DocumentAccess;

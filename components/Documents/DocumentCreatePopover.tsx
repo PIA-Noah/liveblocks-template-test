@@ -68,15 +68,16 @@ export function DocumentCreatePopover({
             Whiteboard
           </Button>
           <Button
-            disabled
             icon={<PlusIcon />}
             onClick={() => {
               createNewDocument("Untitled", "spreadsheet");
             }}
             variant="subtle"
+            disabled={disableButtons}
           >
             Spreadsheet
           </Button>
+          
         </div>
       }
       modal

@@ -10,6 +10,8 @@ import {
 import { useDocumentsFunctionSWR, useInitialDocument } from "@/lib/hooks";
 import { getDocumentAccess } from "@/lib/utils";
 import { useBroadcastEvent, useEventListener } from "@/liveblocks.config";
+import { useBroadcastEvent as useBroadcastEventSheet , useEventListener as useEventListenerSheet  } from "@/liveblocks_sheet.config";
+
 import { Dialog } from "@/primitives/Dialog";
 import { DocumentAccess } from "@/types";
 import { ShareDialogDefault } from "./ShareDialogDefault";
@@ -22,7 +24,7 @@ import styles from "./ShareDialog.module.css";
 type Props = Omit<ComponentProps<typeof Dialog>, "content" | "title">;
 
 export function ShareDialog({ children, ...props }: Props) {
-  const { id: documentId, accesses: documentAccesses } = useInitialDocument();
+  const { id: documentId, accesses: documentAccesses, type:docType } = useInitialDocument();
 
   const { data: session } = useSession();
   const [currentUserAccess, setCurrentUserAccess] = useState(
@@ -111,10 +113,18 @@ export function ShareDialog({ children, ...props }: Props) {
   }
 
   // Broadcasts are used for sending share dialog updates below
-  const broadcast = useBroadcastEvent();
+  const broadcast = docType === 'spreadsheet'
+  ? useBroadcastEventSheet()
+  : useBroadcastEvent();
 
   // If a share dialog update has been received, refresh data
-  useEventListener(({ event }) => {
+  docType === 'spreadsheet'
+  ? useEventListenerSheet(({ event }) => {
+    if (event.type === "SHARE_DIALOG_UPDATE") {
+      revalidateAll();
+    }
+  })
+  : useEventListener(({ event }) => {
     if (event.type === "SHARE_DIALOG_UPDATE") {
       revalidateAll();
     }
