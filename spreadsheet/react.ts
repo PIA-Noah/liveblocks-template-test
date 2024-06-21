@@ -35,8 +35,8 @@ export interface ReactSpreadsheet {
   users: readonly User<Presence, UserMeta>[];
 }
 
-export  function useSpreadsheet(): ReactSpreadsheet | null {
-  console.log('running useSpreadsheet');
+export function useSpreadsheet(): ReactSpreadsheet | null {
+  console.log("running useSpreadsheet");
   const room = useRoom();
   const [spreadsheet, setSpreadsheet] = useState<Spreadsheet | null>(null);
   const [columns, setColumns] = useState<Column[]>([]);
@@ -55,40 +55,41 @@ export  function useSpreadsheet(): ReactSpreadsheet | null {
   );
 
   useEffect(() => {
-    console.log('useEffect in useSpreadsheet to create sheet');
+    console.log("useEffect in useSpreadsheet to create sheet");
 
     if (!room) {
-      console.error('Room is not defined');
+      console.error("Room is not defined");
       return;
     }
     if (!room.getStorage) {
-      console.error('room.getStorage is not defined');
+      console.error("room.getStorage is not defined");
       return;
     }
 
-    createSpreadsheet(room).then((spreadsheet) => {
-      console.log('Spreadsheet created');
-      spreadsheet.onColumnsChange(setColumns);
-      spreadsheet.onRowsChange(setRows);
-      spreadsheet.onCellsChange(setCells);
-      spreadsheet.onOthersChange((others) => {
-        setUsers(others);
-        setOthers(
-          others.reduce<Record<string, UserInfo>>((previous, current) => {
-            if (current.presence?.selectedCell) {
-              previous[current.presence.selectedCell] = current.info;
-            }
+    createSpreadsheet(room)
+      .then((spreadsheet) => {
+        console.log("Spreadsheet created");
+        spreadsheet.onColumnsChange(setColumns);
+        spreadsheet.onRowsChange(setRows);
+        spreadsheet.onCellsChange(setCells);
+        spreadsheet.onOthersChange((others) => {
+          setUsers(others);
+          setOthers(
+            others.reduce<Record<string, UserInfo>>((previous, current) => {
+              if (current.presence?.selectedCell) {
+                previous[current.presence.selectedCell] = current.info;
+              }
 
-            return previous;
-          }, {})
-        );
+              return previous;
+            }, {})
+          );
+        });
+
+        setSpreadsheet(spreadsheet);
+      })
+      .catch((error) => {
+        console.error("Error creating spreadsheet:", error);
       });
-
-      setSpreadsheet(spreadsheet);
-    })
-    .catch((error) => {
-      console.error('Error creating spreadsheet:', error);
-    });
   }, [room]);
 
   useEffect(() => {

@@ -21,7 +21,7 @@ import styles from "./ShareDialog.module.css";
 
 type Props = Omit<ComponentProps<typeof Dialog>, "content" | "title">;
 
-export function ShareDialog({ children, ...props }: Props) {
+export function SheetShareDialog({ children, ...props }: Props) {
   const { id: documentId, accesses: documentAccesses } = useInitialDocument();
 
   const { data: session } = useSession();

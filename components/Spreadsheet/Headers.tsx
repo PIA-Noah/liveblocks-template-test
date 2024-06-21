@@ -39,6 +39,7 @@ import {
   useRef,
   useState,
 } from "react";
+import { useHistory, useSelf } from "@/liveblocks_sheet.config";
 import {
   COLUMN_HEADER_WIDTH,
   COLUMN_INITIAL_WIDTH,
@@ -62,10 +63,9 @@ import {
   ResetIcon,
   TrashIcon,
 } from "@/spreadsheet/icons";
-import { useHistory, useSelf } from "@/liveblocks_sheet.config";
 import { getHeaderLabel } from "@/spreadsheet/interpreter/utils";
-import { getCellId } from "@/spreadsheet/utils";
 import type { Cell, Column, Row } from "@/spreadsheet/types";
+import { getCellId } from "@/spreadsheet/utils";
 import { appendUnit } from "@/utils/appendUnit";
 import { clamp } from "@/utils/clamp";
 import { getIndexWithProperty } from "@/utils/getIndexWithProperty";

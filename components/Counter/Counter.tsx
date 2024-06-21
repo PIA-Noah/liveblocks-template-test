@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 export function Counter() {
   // Utilisation du hook useState pour gérer l'état du compteur
@@ -15,15 +15,17 @@ export function Counter() {
   };
 
   return (
-    <div style={{ textAlign: 'center', marginTop: '20px' }}>
+    <div style={{ textAlign: "center", marginTop: "20px" }}>
       <h1>Counter</h1>
-      <p style={{ fontSize: '24px' }}>{count}</p>
+      <p style={{ fontSize: "24px" }}>{count}</p>
       <div>
-        <button onClick={increment} style={{ marginRight: '10px' }}>Increment</button>
+        <button onClick={increment} style={{ marginRight: "10px" }}>
+          Increment
+        </button>
         <button onClick={decrement}>Decrement</button>
       </div>
     </div>
   );
-};
+}
 
 export default Counter;

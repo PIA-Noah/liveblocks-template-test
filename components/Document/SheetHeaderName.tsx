@@ -8,7 +8,7 @@ import {
 } from "react";
 import { EditIcon } from "@/icons";
 import { useInitialDocument } from "@/lib/hooks/useInitialDocument";
-import { useSelf } from "@/liveblocks.config";
+import { useSelf } from "@/liveblocks_sheet.config";
 import { Tooltip } from "@/primitives/Tooltip";
 import styles from "./DocumentHeaderName.module.css";
 
@@ -16,7 +16,7 @@ interface Props extends ComponentProps<"div"> {
   onDocumentRename: (name: string) => void;
 }
 
-export function DocumentHeaderName({
+export function SheetHeaderName({
   onDocumentRename,
   className,
   ...props

@@ -1,20 +1,19 @@
-'use client';
-
+"use client";
+import { getHeaderLabel } from "@/spreadsheet/interpreter/utils";
+import type { ReactSpreadsheet } from "@/spreadsheet/react";
+import type { CellAddress, Column, Row } from "@/spreadsheet/types";
 import cx from "classnames";
 import { type ComponentProps, useCallback, useMemo, useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
-import { GRID_MAX_COLUMNS, GRID_MAX_ROWS } from "@/spreadsheet/constants";
 import { useHistory } from "@/liveblocks_sheet.config";
-import { getHeaderLabel } from "@/spreadsheet/interpreter/utils";
-import type { ReactSpreadsheet } from "@/spreadsheet/react";
-import { getCellId } from "@/spreadsheet/utils";
-import type { CellAddress, Column, Row } from "@/spreadsheet/types";
-import { TABLE_ID, canUseHotkeys } from "@/utils/canUseHotkeys";
-import { clamp } from "@/utils/clamp";
 import { getIndexWithProperty } from "@/utils/getIndexWithProperty";
 import { Cell } from "./Cell";
 import { Headers, type Props as HeadersProps } from "./Headers";
 import styles from "./Sheet.module.css";
+import { GRID_MAX_COLUMNS, GRID_MAX_ROWS } from "@/spreadsheet/constants";
+import { getCellId } from "@/spreadsheet/utils";
+import { TABLE_ID, canUseHotkeys } from "@/utils/canUseHotkeys";
+import { clamp } from "@/utils/clamp";
 
 export type Props = ComponentProps<"div"> & ReactSpreadsheet;
 

@@ -16,7 +16,7 @@ import {
   getHeaderLabel,
 } from "./interpreter/utils";
 import { extractCellId, getCellId, removeFromArray } from "./utils";
-import {RoomEvent} from "@/liveblocks_sheet.config"
+import { RoomEvent } from "@/liveblocks_sheet.config";
 
 export interface Spreadsheet {
   clearColumn(index: number): void;
@@ -45,9 +45,9 @@ export interface Spreadsheet {
 export async function createSpreadsheet(
   room: Room<Presence, Storage, UserMeta, RoomEvent>
 ): Promise<Spreadsheet> {
-  console.log('running createSpreadsheet');
+  console.log("running createSpreadsheet");
   const { root } = await room.getStorage();
-  console.log('getStorage ?');
+  console.log("getStorage ?");
 
   const spreadsheet = root.get("spreadsheet");
 

@@ -77,7 +77,6 @@ export function DocumentCreatePopover({
           >
             Spreadsheet
           </Button>
-          
         </div>
       }
       modal

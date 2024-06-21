@@ -1,8 +1,8 @@
 import { useMemo } from "react";
-import { useOthers, useSelf } from "../../liveblocks.config";
+import { useOthers, useSelf } from "../../liveblocks_sheet.config";
 import { AvatarStack } from "../../primitives/AvatarStack";
 
-export function DocumentHeaderAvatars() {
+export function SheetHeaderAvatars() {
   const self = useSelf();
   const others = useOthers();
   const users = useMemo(

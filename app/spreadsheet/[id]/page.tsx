@@ -8,5 +8,7 @@ export default async function Spreadsheet({
 }) {
   const { data = null, error = null } = await getDocument({ documentId: id });
 
-  return <SpreadsheetDocumentView initialDocument={data} initialError={error} />;
+  return (
+    <SpreadsheetDocumentView initialDocument={data} initialError={error} />
+  );
 }

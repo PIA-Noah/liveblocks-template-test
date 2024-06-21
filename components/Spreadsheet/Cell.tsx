@@ -1,12 +1,13 @@
 import { useGesture } from "@use-gesture/react";
 import cx from "classnames";
-import DOMPurify from 'dompurify';
+import DOMPurify from "dompurify";
 import {
   AnimationPlaybackControls,
   animate,
   motion,
   useMotionValue,
 } from "framer-motion";
+import Image from "next/image";
 import {
   type CSSProperties,
   type ComponentProps,
@@ -19,8 +20,12 @@ import {
   useRef,
   useState,
 } from "react";
-import { COLORS } from "@/spreadsheet/constants";
 import { useHistory, useSelf } from "@/liveblocks_sheet.config";
+import { isNumerical } from "@/utils/isNumerical";
+import { shuffle } from "@/utils/shuffle";
+import { useInitialRender } from "@/utils/useInitialRender";
+import styles from "./Cell.module.css";
+import { COLORS } from "@/spreadsheet/constants";
 import tokenizer, {
   SyntaxKind,
   tokenToString,
@@ -29,10 +34,6 @@ import { EXPRESSION_ERROR } from "@/spreadsheet/interpreter/utils";
 import type { UserInfo } from "@/spreadsheet/types";
 import { appendUnit } from "@/utils/appendUnit";
 import { removeGlobalCursor, setGlobalCursor } from "@/utils/globalCursor";
-import { isNumerical } from "@/utils/isNumerical";
-import { shuffle } from "@/utils/shuffle";
-import { useInitialRender } from "@/utils/useInitialRender";
-import styles from "./Cell.module.css";
 
 export interface Props extends Omit<ComponentProps<"td">, "onSelect"> {
   cellId: string;
@@ -94,7 +95,10 @@ function getCaretPosition(element: HTMLElement | Node) {
   }
 }
 
-function setCaretPosition(element: HTMLElement | Node, position: number): number {
+function setCaretPosition(
+  element: HTMLElement | Node,
+  position: number
+): number {
   const childNodes = Array.from(element.childNodes); // Convert to array
 
   for (const node of childNodes) {
@@ -427,7 +431,7 @@ export function Cell({
     >
       {other && (
         <div aria-hidden className={styles.user}>
-          <img
+          <Image
             alt={other.avatar}
             className={styles.user_avatar}
             src={other.avatar}
