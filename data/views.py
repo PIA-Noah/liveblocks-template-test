@@ -12,7 +12,7 @@ from .serializers import MailBellSerializer,FileAccessSerializer
 from .serializers import OrgConRightSerializer,UserConRightSerializer,OrgExerRightSerializer,UserExerRightSerializer
 from .serializers import MySpaceShareSerializer,MySpaceAllSerializer,OrgSpaceSerializer
 # from .serializers import TestSerializer
-from .filter import UserFilter,OrgFilter,ConFilter,ExerFilter,FileFilter,CommentFilter
+from .filters import UserFilter,OrgFilter,ConFilter,ExerFilter,FileFilter,CommentFilter
 # from django.template import loader
 
 #from .models import CustomUser
