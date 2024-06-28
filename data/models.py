@@ -44,7 +44,7 @@ class CustomUser(AbstractUser): ### as user in code
 class Organization(models.Model): ### as org in code
     #id_org = models.IntegerField(primary_key=True)
     email = models.EmailField(unique=True)
-    name = models.CharField(max_length=63,unique=True)
+    name = models.CharField(max_length=63,unique=True,editable=True)
     tel = models.CharField(max_length=31,verbose_name="telephone number")
     adrs = models.CharField(max_length=63,verbose_name="adress")
     post = models.CharField(max_length=15,verbose_name="post code")
@@ -80,7 +80,7 @@ class Contract(models.Model):  ### as con in code
             return None
         
     def __str__(self):#to string
-        return Organization.__str__(self.name)
+        return self.name
 
 class Exercise(models.Model):  ### as exer in code
     #id = models.IntegerField(primary_key=True)
@@ -195,6 +195,7 @@ ROLE_TYPE = (
         ('S', 'Selfdefined'),
         ('U', 'Undefined'),
     )
+
 class OrgConRight(models.Model):
     org = models.ForeignKey("Organization",on_delete=models.CASCADE,related_name="con_rights",verbose_name="organization")
     con = models.ForeignKey("Contract",on_delete=models.CASCADE,related_name="org_rights",verbose_name="contract")
@@ -294,7 +295,7 @@ class UserExerRight(models.Model):
 class FileAccess(models.Model):
     file = models.OneToOneField("File",on_delete=models.CASCADE,primary_key=True,related_name="access")
     user = models.ManyToManyField("CustomUser",related_name="file_access")
-    org = models.ManyToManyField("Organization",related_name="file_access",verbose_name="Organization")
+    org = models.ManyToManyField("Organization",related_name="file_access",verbose_name="organization")
     is_public = models.BooleanField(default=False)
 
 class Share(models.Model):
@@ -303,7 +304,7 @@ class Share(models.Model):
     file = models.ForeignKey("File",on_delete=models.CASCADE,related_name="share")
 
     date = models.DateField(auto_now=True)
+    message = models.TextField(null=True,blank=True)
     class Meta:
         ordering = ['from_user','to_user','file']
         unique_together = ('from_user','to_user','file')
-    
