@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 import os
 from pathlib import Path
+from datetime import timedelta # import this library top of the settings.py file
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -43,8 +44,12 @@ INSTALLED_APPS = [
     
     'django_filters',#filter API
     'rest_framework',# bridge to API
-    "corsheaders",# CORS protector
+    'rest_framework.authtoken',# bridge to API
 
+    "corsheaders",# CORS protector
+    
+    'dj_rest_auth',# combine DRF and allauth
+    'dj_rest_auth.registration',# combine DRF and allauth
     'allauth',
     'allauth.account',
     # Optional -- requires install using `django-allauth[socialaccount]`.
@@ -88,15 +93,26 @@ TEMPLATES = [
 ]
 
 REST_FRAMEWORK = {# API framework
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny',
+        'rest_framework.permissions.IsAuthenticated',
     ],
     'DEFAULT_FILTER_BACKENDS': [
-        'django_filters.rest_framework.DjangoFilterBackend'
+        'django_filters.rest_framework.DjangoFilterBackend',
+        'rest_framework.filters.SearchFilter',
+        'rest_framework.filters.OrderingFilter',
     ],
 }
-
-CORS_ALLOWED_ORIGINS = [#CROS protector
+SIMPLE_JWT = { #Json Web tokens settings
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
+    'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
+    'SLIDING_TOKEN_LIFETIME': timedelta(days=30),
+    'SLIDING_TOKEN_REFRESH_LIFETIME_LATE_USER': timedelta(days=1),
+    'SLIDING_TOKEN_LIFETIME_LATE_USER': timedelta(days=30),
+}
+CORS_ALLOWED_ORIGINS = [ #CROS protector
     "http://localhost:3000",
     "http://127.0.0.1:8000",
 ]
@@ -214,6 +230,7 @@ ACCOUNT_RATE_LIMITS = {
     # Users can request email confirmation mails via the email management view, and, implicitly, when logging in with an unverified account. This rate limit prevents users from sending too many of these mails.
 }
 
+REST_USE_JWT = True #optional, instead of Bearer tokens
 SITE_ID = 1 
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"  # new
 #or any other page 
