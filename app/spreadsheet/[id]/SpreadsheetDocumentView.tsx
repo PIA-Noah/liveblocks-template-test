@@ -119,6 +119,8 @@ function SpreadsheetUI() {
           alt="Loading"
           className={styles.loading}
           src="https://liveblocks.io/loading.svg"
+          width={5}
+          height={5}
         />
       </div>
     );
