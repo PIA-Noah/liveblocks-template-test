@@ -9,7 +9,9 @@ const Emails = () => {
   useEffect(() => {
     const fetchEmails = async () => {
       try {
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/user-emails/`);
+        const response = await axios.get(
+          `${process.env.NEXT_PUBLIC_API_URL}/user-emails/`
+        );
         setEmails(response.data);
       } catch (error) {
         console.error("Error fetching emails:", error);
