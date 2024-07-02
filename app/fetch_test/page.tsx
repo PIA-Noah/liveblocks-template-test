@@ -1,6 +1,6 @@
-'use client';
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+"use client";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 const Emails = () => {
   const [emails, setEmails] = useState<string[]>([]);
@@ -9,10 +9,10 @@ const Emails = () => {
   useEffect(() => {
     const fetchEmails = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/user-emails/');
+        const response = await axios.get("http://localhost:8000/user-emails/");
         setEmails(response.data);
       } catch (error) {
-        console.error('Error fetching emails:', error);
+        console.error("Error fetching emails:", error);
       } finally {
         setLoading(false); // Arrêter le chargement une fois les données récupérées
       }

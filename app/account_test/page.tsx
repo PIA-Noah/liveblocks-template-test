@@ -1,8 +1,7 @@
-'use client'
+"use client";
 
 // pages/login.tsx
-import React from 'react';
-import axios from 'axios';
+import React from "react";
 
 const LoginPage: React.FC = () => {
   const handleLogin = () => {
@@ -12,8 +11,18 @@ const LoginPage: React.FC = () => {
   };
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-      <button onClick={handleLogin} style={{ padding: '10px 20px', fontSize: '16px' }}>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100vh",
+      }}
+    >
+      <button
+        onClick={handleLogin}
+        style={{ padding: "10px 20px", fontSize: "16px" }}
+      >
         Login with Django Allauth
       </button>
     </div>
