@@ -6,7 +6,7 @@ import React from "react";
 const LoginPage: React.FC = () => {
   const handleLogin = () => {
     // Replace with your Django backend URL
-    const djangoAuthUrl = `${process.env.NEXT_PUBLIC_API_URL}/accounts/`;
+    const djangoAuthUrl = `${process.env.NEXT_PUBLIC_API_URL}`;
     window.location.href = djangoAuthUrl;
   };
 
