@@ -20,7 +20,6 @@ const Emails = () => {
       }
     };
 
-
     fetchEmails();
   }, []);
 
