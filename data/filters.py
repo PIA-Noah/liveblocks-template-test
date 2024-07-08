@@ -64,3 +64,32 @@ class CommentFilter(filters.FilterSet):
             'dealer':['exact','in'],
             'is_treated':[],
         }
+
+class OrgConFilter(filters.FilterSet):
+    class Meta:
+        model = OrgConRight
+        fields = {
+            'org':[],
+            'con':[],
+        }
+class UserConFilter(filters.FilterSet):
+    class Meta:
+        model = UserConRight
+        fields = {
+            'user':[],
+            'con':[],
+        }
+class OrgExerFilter(filters.FilterSet):
+    class Meta:
+        model = OrgExerRight
+        fields = {
+            'org':[],
+            'exer':[],
+        }
+class UserExerFilter(filters.FilterSet):
+    class Meta:
+        model = UserExerRight
+        fields = {
+            'user':[],
+            'exer':[],
+        }
