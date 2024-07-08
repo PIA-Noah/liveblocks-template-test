@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django_filters',#filter API
     'rest_framework',# bridge to API
     'rest_framework.authtoken',# bridge to API
+    'drf_spectacular',# docs of API
 
     "corsheaders",# CORS protector
     
@@ -104,6 +105,7 @@ REST_FRAMEWORK = {# API framework
         'rest_framework.filters.SearchFilter',
         'rest_framework.filters.OrderingFilter',
     ],
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 SIMPLE_JWT = { #Json Web tokens settings
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
@@ -234,4 +236,15 @@ REST_USE_JWT = True #optional, instead of Bearer tokens
 SITE_ID = 1 
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"  # new
 #or any other page 
-ACCOUNT_LOGOUT_REDIRECT_URL ='/accounts/login/' 
+ACCOUNT_LOGOUT_REDIRECT_URL ='/accounts/login/'
+
+SPECTACULAR_SETTINGS = { #API documentation 
+    'TITLE': 'SimR API',
+    'DESCRIPTION': 'Still in test',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+    # OTHER SETTINGS
+}
+
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+MEDIA_URL = '/media/'
