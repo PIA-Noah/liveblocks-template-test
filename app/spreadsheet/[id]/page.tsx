@@ -1,5 +1,6 @@
 import { getDocument } from "@/lib/actions";
 import { SpreadsheetDocumentView } from "./SpreadsheetDocumentView";
+// import '@/styles/globals.css'
 
 export default async function Spreadsheet({
   params: { id },

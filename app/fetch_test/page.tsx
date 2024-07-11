@@ -2,17 +2,17 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-const Emails = () => {
-  const [emails, setEmails] = useState<string[]>([]);
+const Organization = () => {
+  const [orgs, setOrg] = useState<string[]>([]);
   const [loading, setLoading] = useState<boolean>(true); // Ajouter un état de chargement
 
   useEffect(() => {
-    const fetchEmails = async () => {
+    const fetchOrg = async () => {
       try {
         const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_API_URL}/user-emails/`
+          `${process.env.NEXT_PUBLIC_API_URL}/api/organization`
         );
-        setEmails(response.data);
+        setOrg(response.data);
       } catch (error) {
         console.error("Error fetching emails:", error);
       } finally {
@@ -20,7 +20,7 @@ const Emails = () => {
       }
     };
 
-    fetchEmails();
+    fetchOrg();
   }, []);
 
   if (loading) {
@@ -29,14 +29,14 @@ const Emails = () => {
 
   return (
     <div>
-      <h1>User Emails</h1>
+      <h1>Organizations</h1>
       <ul>
-        {emails.map((email, index) => (
-          <li key={index}>{email}</li>
+        {orgs.map((org, name) => (
+          <li key={name}>{org}</li>
         ))}
       </ul>
     </div>
   );
 };
 
-export default Emails;
+export default Organization;

@@ -1,3 +1,0 @@
-// "john doe"
-
-// "hello world"

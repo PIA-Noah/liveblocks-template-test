@@ -14,6 +14,7 @@ import { GRID_MAX_COLUMNS, GRID_MAX_ROWS } from "@/spreadsheet/constants";
 import { getCellId } from "@/spreadsheet/utils";
 import { TABLE_ID, canUseHotkeys } from "@/utils/canUseHotkeys";
 import { clamp } from "@/utils/clamp";
+import "@/styles/sheet-global.css";
 
 export type Props = ComponentProps<"div"> & ReactSpreadsheet;
 

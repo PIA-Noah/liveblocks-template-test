@@ -34,6 +34,7 @@ import { EXPRESSION_ERROR } from "@/spreadsheet/interpreter/utils";
 import type { UserInfo } from "@/spreadsheet/types";
 import { appendUnit } from "@/utils/appendUnit";
 import { removeGlobalCursor, setGlobalCursor } from "@/utils/globalCursor";
+// import '@/styles/sheet-global.css';
 
 export interface Props extends Omit<ComponentProps<"td">, "onSelect"> {
   cellId: string;

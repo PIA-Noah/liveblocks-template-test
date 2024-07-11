@@ -13,7 +13,7 @@ import { useSpreadsheet } from "@/spreadsheet/react";
 import { createInitialStorage } from "@/spreadsheet/utils";
 import { Document, ErrorData } from "@/types";
 import { appendUnit } from "@/utils/appendUnit";
-import styles from "./SpreadsheetDocuentView.module.css";
+import styles from "./SpreadsheetDocumentView.module.css";
 import { Avatar } from "@/primitives/Avatar";
 import { Tooltip } from "@/primitives/Tooltip";
 import {
@@ -41,6 +41,7 @@ import { DocumentLayout } from "@/layouts/Document";
 import { ErrorLayout } from "@/layouts/Error";
 import { SheetHeader } from "@/components/Document/SheetHeader";
 import { Sheet } from "@/components/Spreadsheet/Sheet";
+import "@/styles/globals.css";
 
 type Props = {
   initialDocument: Document | null;
