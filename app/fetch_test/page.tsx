@@ -2,8 +2,17 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
+interface Organization {
+  id: number;
+  email: string;
+  name: string;
+  tel: string;
+  adrs: string;
+  post: string;
+}
+
 const Organization = () => {
-  const [orgs, setOrg] = useState<string[]>([]);
+  const [orgs, setOrg] = useState<Organization[]>([]);
   const [loading, setLoading] = useState<boolean>(true); // Ajouter un état de chargement
 
   useEffect(() => {
@@ -31,8 +40,8 @@ const Organization = () => {
     <div>
       <h1>Organizations</h1>
       <ul>
-        {orgs.map((org, name) => (
-          <li key={name}>{org}</li>
+        {orgs.map((org) => (
+          <li key={org.id}>{org.name}</li>
         ))}
       </ul>
     </div>
