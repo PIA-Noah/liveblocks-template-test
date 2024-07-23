@@ -11,9 +11,16 @@ interface Organization {
   post: string;
 }
 
-const Organization = () => {
-  const [orgs, setOrg] = useState<Organization[]>([]);
-  const [loading, setLoading] = useState<boolean>(true); // Ajouter un état de chargement
+const OrganizationComponent = () => {
+  const [orgs, setOrgs] = useState<Organization[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [newOrg, setNewOrg] = useState<Partial<Organization>>({
+    name: "",
+    email: "",
+    tel: "",
+    adrs: "",
+    post: "",
+  });
 
   useEffect(() => {
     const fetchOrg = async () => {
@@ -21,19 +28,44 @@ const Organization = () => {
         const response = await axios.get(
           `${process.env.NEXT_PUBLIC_API_URL}/api/organization`
         );
-        setOrg(response.data);
+        setOrgs(response.data);
       } catch (error) {
-        console.error("Error fetching emails:", error);
+        console.error("Error fetching organizations:", error);
       } finally {
-        setLoading(false); // Arrêter le chargement une fois les données récupérées
+        setLoading(false);
       }
     };
 
     fetchOrg();
   }, []);
 
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setNewOrg((prevOrg) => ({ ...prevOrg, [name]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/organization`,
+        newOrg
+      );
+      setOrgs((prevOrgs) => [...prevOrgs, response.data]);
+      setNewOrg({
+        name: "",
+        email: "",
+        tel: "",
+        adrs: "",
+        post: "",
+      });
+    } catch (error) {
+      console.error("Error adding organization:", error);
+    }
+  };
+
   if (loading) {
-    return <div>Loading...</div>; // Afficher le texte de chargement pendant que les données sont récupérées
+    return <div>Loading...</div>;
   }
 
   return (
@@ -44,8 +76,46 @@ const Organization = () => {
           <li key={org.id}>{org.name}</li>
         ))}
       </ul>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          name="name"
+          placeholder="Name"
+          value={newOrg.name || ""}
+          onChange={handleInputChange}
+        />
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          value={newOrg.email || ""}
+          onChange={handleInputChange}
+        />
+        <input
+          type="text"
+          name="tel"
+          placeholder="Telephone"
+          value={newOrg.tel || ""}
+          onChange={handleInputChange}
+        />
+        <input
+          type="text"
+          name="adrs"
+          placeholder="Address"
+          value={newOrg.adrs || ""}
+          onChange={handleInputChange}
+        />
+        <input
+          type="text"
+          name="post"
+          placeholder="Post"
+          value={newOrg.post || ""}
+          onChange={handleInputChange}
+        />
+        <button type="submit">Add Organization</button>
+      </form>
     </div>
   );
 };
 
-export default Organization;
+export default OrganizationComponent;
