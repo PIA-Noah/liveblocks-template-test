@@ -16,11 +16,11 @@ const OrganizationComponent = () => {
   const [orgs, setOrgs] = useState<Organization[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [newOrg, setNewOrg] = useState<Partial<Organization>>({
-    name: '',
-    email: '',
-    tel: '',
-    adrs: '',
-    post: '',
+    name: "",
+    email: "",
+    tel: "",
+    adrs: "",
+    post: "",
   });
 
   useEffect(() => {
@@ -55,16 +55,16 @@ const OrganizationComponent = () => {
           name: newOrg.name,
           tel: newOrg.tel,
           adrs: newOrg.adrs,
-          post: newOrg.post
+          post: newOrg.post,
         }
       );
       setOrgs((prevOrgs) => [...prevOrgs, response.data]);
       setNewOrg({
-        name: '',
-        email: '',
-        tel: '',
-        adrs: '',
-        post: '',
+        name: "",
+        email: "",
+        tel: "",
+        adrs: "",
+        post: "",
       });
     } catch (error) {
       console.error("Error adding organization:", error);
@@ -80,7 +80,9 @@ const OrganizationComponent = () => {
       <h1 className={styles.h1}>Organizations</h1>
       <ul className={styles.ul}>
         {orgs.map((org) => (
-          <li key={org.id} className={styles.li}>{org.name}</li>
+          <li key={org.id} className={styles.li}>
+            {org.name}
+          </li>
         ))}
       </ul>
       <form onSubmit={handleSubmit} className={styles.form}>
@@ -88,7 +90,7 @@ const OrganizationComponent = () => {
           type="email"
           name="email"
           placeholder="Email"
-          value={newOrg.email || ''}
+          value={newOrg.email || ""}
           onChange={handleInputChange}
           className={styles.input}
         />
@@ -96,7 +98,7 @@ const OrganizationComponent = () => {
           type="text"
           name="name"
           placeholder="Name"
-          value={newOrg.name || ''}
+          value={newOrg.name || ""}
           onChange={handleInputChange}
           className={styles.input}
         />
@@ -104,7 +106,7 @@ const OrganizationComponent = () => {
           type="text"
           name="tel"
           placeholder="Telephone"
-          value={newOrg.tel || ''}
+          value={newOrg.tel || ""}
           onChange={handleInputChange}
           className={styles.input}
         />
@@ -112,7 +114,7 @@ const OrganizationComponent = () => {
           type="text"
           name="adrs"
           placeholder="Address"
-          value={newOrg.adrs || ''}
+          value={newOrg.adrs || ""}
           onChange={handleInputChange}
           className={styles.input}
         />
@@ -120,11 +122,13 @@ const OrganizationComponent = () => {
           type="text"
           name="post"
           placeholder="Post"
-          value={newOrg.post || ''}
+          value={newOrg.post || ""}
           onChange={handleInputChange}
           className={styles.input}
         />
-        <button type="submit" className={styles.button}>Add Organization</button>
+        <button type="submit" className={styles.button}>
+          Add Organization
+        </button>
       </form>
     </div>
   );
