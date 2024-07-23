@@ -48,7 +48,7 @@ const OrganizationComponent = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/organization`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/organization/`,
         {
           email: newOrg.email,
           name: newOrg.name,
