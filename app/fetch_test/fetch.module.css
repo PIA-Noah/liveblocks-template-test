@@ -26,6 +26,9 @@
   padding: 10px;
   margin-bottom: 10px;
   border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .form {
@@ -52,4 +55,12 @@
 
 .button:hover {
   background-color: #0056b3;
+}
+
+.deleteButton {
+  background-color: #dc3545;
+}
+
+.deleteButton:hover {
+  background-color: #c82333;
 }

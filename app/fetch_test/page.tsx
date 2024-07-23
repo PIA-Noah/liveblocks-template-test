@@ -27,7 +27,7 @@ const OrganizationComponent = () => {
     const fetchOrg = async () => {
       try {
         const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_API_URL}/api/organization`
+          `${process.env.NEXT_PUBLIC_API_URL}/api/organization/`
         );
         setOrgs(response.data);
       } catch (error) {
@@ -49,7 +49,7 @@ const OrganizationComponent = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/organization`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/organization/`,
         {
           email: newOrg.email,
           name: newOrg.name,
@@ -71,6 +71,17 @@ const OrganizationComponent = () => {
     }
   };
 
+  const handleDelete = async (id: number) => {
+    try {
+      await axios.delete(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/organization/${id}/`
+      );
+      setOrgs((prevOrgs) => prevOrgs.filter((org) => org.id !== id));
+    } catch (error) {
+      console.error("Error deleting organization:", error);
+    }
+  };
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -82,6 +93,12 @@ const OrganizationComponent = () => {
         {orgs.map((org) => (
           <li key={org.id} className={styles.li}>
             {org.name}
+            <button
+              onClick={() => handleDelete(org.id)}
+              className={`${styles.button} ${styles.deleteButton}`}
+            >
+              Delete
+            </button>
           </li>
         ))}
       </ul>
