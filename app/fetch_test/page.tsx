@@ -49,7 +49,13 @@ const OrganizationComponent = () => {
     try {
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}/api/organization`,
-        newOrg
+        {
+          email: newOrg.email,
+          name: newOrg.name,
+          tel: newOrg.tel,
+          adrs: newOrg.adrs,
+          post: newOrg.post,
+        }
       );
       setOrgs((prevOrgs) => [...prevOrgs, response.data]);
       setNewOrg({
@@ -78,17 +84,17 @@ const OrganizationComponent = () => {
       </ul>
       <form onSubmit={handleSubmit}>
         <input
-          type="text"
-          name="name"
-          placeholder="Name"
-          value={newOrg.name || ""}
-          onChange={handleInputChange}
-        />
-        <input
           type="email"
           name="email"
           placeholder="Email"
           value={newOrg.email || ""}
+          onChange={handleInputChange}
+        />
+        <input
+          type="text"
+          name="name"
+          placeholder="Name"
+          value={newOrg.name || ""}
           onChange={handleInputChange}
         />
         <input
