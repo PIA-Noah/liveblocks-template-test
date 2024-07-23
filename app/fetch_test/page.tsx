@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import styles from "./organization.module.css"; // Import the CSS module
+import styles from "./fetch.module.css"; // Import the CSS module
 
 interface Organization {
   id: number;
