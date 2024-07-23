@@ -5,13 +5,12 @@ import styles from "./organization.module.css"; // Import the CSS module
 
 interface Organization {
   id: number;
-  email: string
+  email: string;
   name: string;
   tel: string;
   adrs: string;
   post: string;
 }
-
 
 const OrganizationComponent = () => {
   const [orgs, setOrgs] = useState<Organization[]>([]);
