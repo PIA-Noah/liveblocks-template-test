@@ -24,21 +24,21 @@ const OrganizationComponent = () => {
   });
 
   useEffect(() => {
-    const fetchOrg = async () => {
-      try {
-        const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_API_URL}/api/organization/`
-        );
-        setOrgs(response.data);
-      } catch (error) {
-        console.error("Error fetching organizations:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchOrg();
   }, []);
+
+  const fetchOrg = async () => {
+    try {
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/organization/`
+      );
+      setOrgs(response.data);
+    } catch (error) {
+      console.error("Error fetching organizations:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -48,22 +48,14 @@ const OrganizationComponent = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/organization/`,
-        {
-          email: newOrg.email,
-          name: newOrg.name,
-          tel: newOrg.tel,
-          adrs: newOrg.adrs,
-          post: newOrg.post,
-        }
-      );
-      try {
-        const response = await axios.get("/api/organization/");
-        setOrgs(response.data);
-      } catch (error) {
-        console.error("Error fetching organizations:", error);
-      }
+      await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/organization/`, {
+        email: newOrg.email,
+        name: newOrg.name,
+        tel: newOrg.tel,
+        adrs: newOrg.adrs,
+        post: newOrg.post,
+      });
+      fetchOrg(); // Récupérer la liste mise à jour des organisations
       setNewOrg({
         name: "",
         email: "",
@@ -73,6 +65,17 @@ const OrganizationComponent = () => {
       });
     } catch (error) {
       console.error("Error adding organization:", error);
+    }
+  };
+
+  const deleteOrganization = async (id: number) => {
+    try {
+      await axios.delete(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/organization/${id}/`
+      );
+      fetchOrg(); // Récupérer la liste mise à jour des organisations
+    } catch (error) {
+      console.error("Error deleting organization:", error);
     }
   };
 
@@ -87,6 +90,12 @@ const OrganizationComponent = () => {
         {orgs.map((org) => (
           <li key={org.id} className={styles.li}>
             {org.name}
+            <button
+              onClick={() => deleteOrganization(org.id)}
+              className={styles.deleteButton}
+            >
+              Delete
+            </button>
           </li>
         ))}
       </ul>

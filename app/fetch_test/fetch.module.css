@@ -1,4 +1,4 @@
-/* organization.module.css */
+/* fetch.module.css */
 .container {
   max-width: 600px;
   margin: 0 auto;
@@ -21,6 +21,9 @@
 }
 
 .li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   background-color: #e7f3ff;
   border: 1px solid #d0e7ff;
   padding: 10px;
@@ -52,4 +55,18 @@
 
 .button:hover {
   background-color: #0056b3;
+}
+
+.deleteButton {
+  padding: 5px 10px;
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.deleteButton:hover {
+  background-color: #ff1a1a;
 }
