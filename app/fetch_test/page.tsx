@@ -58,7 +58,12 @@ const OrganizationComponent = () => {
           post: newOrg.post,
         }
       );
-      setOrgs((prevOrgs) => [...prevOrgs, response.data]);
+      try {
+        const response = await axios.get("/api/organization/");
+        setOrgs(response.data);
+      } catch (error) {
+        console.error("Error fetching organizations:", error);
+      }
       setNewOrg({
         name: "",
         email: "",
