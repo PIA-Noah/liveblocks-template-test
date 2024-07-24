@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useRouter } from "next/navigation"; // Import useRouter
 import styles from "./fetch.module.css"; // Import the CSS module
 
 interface Organization {
@@ -22,6 +23,7 @@ const OrganizationComponent = () => {
     adrs: "",
     post: "",
   });
+  const router = useRouter(); // Initialize router
 
   useEffect(() => {
     fetchOrg();
@@ -79,6 +81,10 @@ const OrganizationComponent = () => {
     }
   };
 
+  const editOrganization = (id: number) => {
+    router.push(`/fetch_test/edit_test/${id}`); // Redirect to edit page
+  };
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -90,12 +96,20 @@ const OrganizationComponent = () => {
         {orgs.map((org) => (
           <li key={org.id} className={styles.li}>
             {org.name}
-            <button
-              onClick={() => deleteOrganization(org.id)}
-              className={styles.deleteButton}
-            >
-              Delete
-            </button>
+            <div className={styles.buttonGroup}>
+              <button
+                onClick={() => editOrganization(org.id)}
+                className={styles.editButton}
+              >
+                Edit
+              </button>
+              <button
+                onClick={() => deleteOrganization(org.id)}
+                className={styles.deleteButton}
+              >
+                Delete
+              </button>
+            </div>
           </li>
         ))}
       </ul>
