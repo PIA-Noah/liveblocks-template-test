@@ -35,13 +35,8 @@ export default async function Index() {
     <MarketingLayout>
       <Container className={styles.section}>
         <div className={styles.heroInfo}>
-          <h1 className={styles.heroTitle}>
-            Kickstart your collaborative&nbsp;app
-          </h1>
-          <p className={styles.heroLead}>
-            Use the Liveblocks Starter Kit to build your document-based
-            collaborative app in&nbsp;minutes.
-          </p>
+          <h1 className={styles.heroTitle}>Welcome to the SimR application</h1>
+          <p className={styles.heroLead}>powered by PIA</p>
         </div>
         <div className={styles.heroActions}>
           <form
@@ -53,70 +48,26 @@ export default async function Index() {
             <Button icon={<SignInIcon />}>Sign in</Button>
           </form>
           <LinkButton
-            href="https://liveblocks.io/docs/guides/nextjs-starter-kit"
+            href="https://parisinfrastructureadvisory.com/"
             target="_blank"
             variant="secondary"
           >
-            Learn more
+            About us
           </LinkButton>
-        </div>
-      </Container>
-      <Container className={styles.section}>
-        <h2 className={styles.sectionTitle}>Features</h2>
-        <div className={styles.featuresGrid}>
-          <Feature
-            description={
-              <>
-                A collaborative whiteboard app with included share menu,
-                documents listing, users, groups, permissions, and more.
-              </>
-            }
-            title="Liveblocks"
-          />
-          <Feature
-            description={
-              <>
-                Best practices followed, using a mixture of SSR and custom API
-                endpoints. Modify documents from both client and server.
-              </>
-            }
-            title="Next.js"
-          />
-          <Feature
-            description={
-              <>
-                Adjust our reusable interface & design system to fit your needs.
-              </>
-            }
-            title="User Interface"
-          />
-          <Feature
-            description={
-              <>
-                All custom client and server functions are fully typed, and easy
-                to update.
-              </>
-            }
-            title="TypeScript"
-          />
-          <Feature
-            description={
-              <>
-                Complete authentication, compatible with any NextAuth provider,
-                including GitHub, Google, Auth0, and many more.
-              </>
-            }
-            title="NextAuth.js"
-          />
-          <Feature
-            description={
-              <>
-                See data update live using the SWR (state-while-revalidate)
-                library.
-              </>
-            }
-            title="SWR"
-          />
+          <LinkButton
+            href="https://simr.vercel.app/fetch_test"
+            target="_blank"
+            variant="destructive"
+          >
+            API test
+          </LinkButton>
+          <LinkButton
+            href="https://simr-backend.onrender.com/accounts/login/"
+            target="_blank"
+            variant="destructive"
+          >
+            Register
+          </LinkButton>
         </div>
       </Container>
     </MarketingLayout>

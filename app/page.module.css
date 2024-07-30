@@ -15,6 +15,7 @@
   font-size: var(--size-4xl);
   font-weight: 800;
   line-height: 1.25;
+  color: cornflowerblue;
 }
 
 .heroLead {

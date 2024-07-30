@@ -17,7 +17,7 @@ export default async function SignInPage() {
   return (
     <div className={styles.container}>
       <main className={styles.main}>
-        <h2 className={styles.title}>Sign in to your account</h2>
+        <h2 className={styles.title}>Join your SimR space</h2>
         {providers && providers.credentials ? (
           <DemoLogin />
         ) : (

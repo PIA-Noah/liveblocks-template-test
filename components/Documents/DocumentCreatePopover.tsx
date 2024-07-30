@@ -77,6 +77,16 @@ export function DocumentCreatePopover({
           >
             Spreadsheet
           </Button>
+          <Button
+            icon={<PlusIcon />}
+            onClick={() => {
+              createNewDocument("Untitled", "counter");
+            }}
+            variant="subtle"
+            disabled={disableButtons}
+          >
+            Counter
+          </Button>
         </div>
       }
       modal

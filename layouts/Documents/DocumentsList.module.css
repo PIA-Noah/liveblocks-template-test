@@ -15,6 +15,7 @@
 .headerTitle {
   font-size: var(--size-xl);
   font-weight: 600;
+  color: cornflowerblue;
 }
 
 .headerActions {

@@ -25,6 +25,7 @@
   margin-bottom: var(--space-9);
   font-size: var(--size-2xl);
   font-weight: 700;
+  color: cornflowerblue;
 }
 
 .actions {
